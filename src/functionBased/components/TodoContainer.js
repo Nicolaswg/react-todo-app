@@ -3,6 +3,10 @@ import Header from "./Header"
 import InputTodo from "./InputTodo"
 import TodosList from "./TodosList"
 import { v4 as uuidv4 } from "uuid"
+import { Routes, Route, } from "react-router-dom"
+import About from "../pages/About"
+import NotMatch from "../pages/NotMatch"
+import Navbar from "./Navbar";
 
 const TodoContainer = () => {
   
@@ -63,18 +67,27 @@ const TodoContainer = () => {
   }
 
   return (
-    <div className="container">
-      <div className="inner">
-        <Header />
-        <InputTodo addTodoProps={addTodoItem} />
-        <TodosList
+    <>
+    <Navbar/>
+    <Routes>
+      <Route exact path="/" element={
+        <div className="container">
+        <div className="inner">
+          <Header />
+          <InputTodo addTodoProps={addTodoItem} />
+          <TodosList
           todos={todos}
           handleChangeProps={handleChange}
           deleteTodoProps={delTodo}
           setUpdate={setUpdate}
-        />
+          />
+        </div>
       </div>
-    </div>
+      }/>
+      <Route path="/about" element={<About />} />
+      <Route path="*" element={<NotMatch/>}/>
+  </Routes>
+  </>
   )
 }
 
