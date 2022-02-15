@@ -9,6 +9,10 @@ export default class TodoItem extends Component {
     editing: false,
   }
 
+  componentWillUnmount() {
+    console.log("...")
+  }
+
   handleEditing = () => {
     this.setState({
       editing:true,
